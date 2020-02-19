@@ -1,0 +1,32 @@
+# Written by CampusIoT Dev Team, 2016-2019
+
+version: "2"
+
+services:
+
+  nodered:
+    extends:
+      file: nodered.yml
+      service: nodered
+    links:
+      - influxdb:influxdb
+
+  influxdb:
+    extends:
+      file: influxdb.yml
+      service: influxdb
+
+  grafana:
+    extends:
+      file: grafana.yml
+      service: grafana
+    links:
+      - influxdb:influxdb
+
+# TODO kapacitor
+#  kapacitor:
+#    extends:
+#      file: kapacitor.yml
+#      service: kapacitor
+#    links:
+#      - influxdb:influxdb
